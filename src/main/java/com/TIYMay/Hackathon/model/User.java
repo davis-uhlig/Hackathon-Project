@@ -1,6 +1,7 @@
 package com.TIYMay.Hackathon.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by duhlig on 8/9/17.
@@ -16,6 +17,10 @@ public class User {
     private String email;
     private String phone;
     private Boolean isAdmin;
+    private List<User> acquaintances;
+    private List<Event> eventsAttending;
+    private List<User> incomingRequests;
+    private List<User> outgoingRequests;
 
     public User() {
     }
@@ -87,6 +92,42 @@ public class User {
 
     public void setAdmin(Boolean admin) {
         isAdmin = admin;
+    }
+
+    @ManyToMany(mappedBy = "users")
+    public List<User> getAcquaintances() {
+        return acquaintances;
+    }
+
+    public void setAcquaintances(List<User> acquaintances) {
+        this.acquaintances = acquaintances;
+    }
+
+    @ManyToMany(mappedBy = "users")
+    public List<Event> getEventsAttending() {
+        return eventsAttending;
+    }
+
+    public void setEventsAttending(List<Event> eventsAttending) {
+        this.eventsAttending = eventsAttending;
+    }
+
+    @ManyToMany(mappedBy = "users")
+    public List<User> getIncomingRequests() {
+        return incomingRequests;
+    }
+
+    public void setIncomingRequests(List<User> incomingRequests) {
+        this.incomingRequests = incomingRequests;
+    }
+
+    @ManyToMany(mappedBy = "users")
+    public List<User> getOutgoingRequests() {
+        return outgoingRequests;
+    }
+
+    public void setOutgoingRequests(List<User> outgoingRequests) {
+        this.outgoingRequests = outgoingRequests;
     }
 
     @Override
